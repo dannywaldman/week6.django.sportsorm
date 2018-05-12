@@ -5,9 +5,22 @@ from . import team_maker
 
 def index(request):
 	context = {
-		"leagues": League.objects.all(),
-		"teams": Team.objects.all(),
-		"players": Player.objects.all(),
+		"basketball": League.objects.filter(sport__iexact='basketball'),
+        "womens": League.objects.filter(name__icontains='women'),
+        "hockey": League.objects.filter(name__icontains='hockey'),
+        "nofootball": League.objects.exclude(name__icontains="football"),
+        "conference": League.objects.filter(name__icontains="onference"),
+        "atlantic": League.objects.filter(name__istartswith="atlantic"),
+        "dallas": Team.objects.filter(location__iexact="dallas"),
+        "raptors": Team.objects.filter(team_name__iexact="raptors"),   
+        "city": Team.objects.filter(location__icontains="city"),
+        "t": Team.objects.filter(team_name__istartswith="t"), 
+        "allteams": Team.objects.all().order_by('location'),
+        "teamsreverse": Team.objects.all().order_by('-team_name'),
+        "cooper": Player.objects.filter(last_name__iexact='cooper'),
+        "joshua": Player.objects.filter(first_name__iexact='joshua'), 
+        "coopjosh": Player.objects.filter(last_name__iexact='cooper').exclude(first_name__iexact='joshua'),
+        "alex": Player.objects.filter(first_name__iexact='alexander') | Player.objects.filter(first_name__iexact='wyatt'), 
 	}
 	return render(request, "leagues/index.html", context)
 
