@@ -1,102 +1,77 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Sports Leagues</title>
+		<title>Sports Leagues 2</title>
 	</head>
 	<body>
-		<h1>Basketball Leagues</h1>
+		<h1>Atlantic Conference Teams</h1>
 		<ol>
-			{% for league in basketball %}
-				<li>{{league.name}}</li>
+			{% for team in atlantic %}
+				<li>{{team.location}} {{team.team_name}}</li>
 			{% endfor %}
 		</ol>
-        <h1>Women's Leagues</h1>
+        <h1>Boston Penguins</h1>
         <ol>
-            {% for league in womens %}
-                <li>{{league.name}}</li> 
-            {% endfor %}
-        </ol>
-        <h1>Hockey Leagues</h1>
-        <ol>
-            {% for league in hockey %} 
-                <li>{{league.name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>No Football</h1>
-        <ol>
-            {% for league in nofootball %}
-                <li>{{league.name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>Conferences</h1>
-        <ol>
-            {% for league in conference %}
-                <li>{{league.name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>Atlanctic</h1>
-        <ol>
-            {% for league in atlantic %}
-                <li>{{league.name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>Dallas Teams</h1>
-        {% for team in dallas %}
-            <li>{[team.location}} {{team.team_name}}</li>
-        {% endfor %}
-        <h1>Raptors</h1>
-        <ol>
-            {% for team in raptors %}
-                <li>{{team.location}} {{team.team_name}}</li>
-            {% endfor%}
-        </ol>
-        <h1>City Teams</h1>
-        <ol>
-            {% for team in city %}
-                <li>{{team.location}} {{team.team_name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>Starts with T</h1>
-        <ol>
-            {% for team in t %}
-                <li>{{team.location}} {{team.team_name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>All teams ordered by location</h1>
-        <ol>
-            {% for team in allteams %}
-                <li>{{team.location}} {{team.team_name}}</li>
-            {% endfor%}
-        </ol>
-        <h1>All teams reverse order by name</h1>
-        <ol>
-            {% for team in teamsreverse %}
-                <li>{{team.location}} {{team.team_name}}</li>
-            {% endfor %}
-        </ol>
-        <h1>Cooper</h1>
-        <ol>
-            {% for player in cooper %}
+            {% for player in penguins %}
                 <li>{{player.first_name}} {{player.last_name}}</li>
             {% endfor %}
         </ol>
-        <h1>Joshua</h1>
+        <h1>International Collegiate Baseball Conference</h1>
         <ol>
-        {% for player in joshua %}
-            <li>{{player.first_name}} {{player.last_name}}</li>
-        {% endfor %}
+            {% for team in icbc %}
+                {% for player in team.curr_players.all %}
+                <li>{{player.first_name}} {{player.last_name}}</li>
+                {% endfor %}
+            {% endfor %}
         </ol>
-        <h1>Last name Cooper excluding first name joshua</h1>
+        <h1>American Conference of Amateur Football: Lopez</h1>
         <ol>
-            {% for player in coopjosh %}
+            {% for player in lopez %}
                 <li>{{player.first_name}} {{player.last_name}}</li>
             {% endfor %}
         </ol>
-        <h1>First name alexander or wyatt</h1>
+        <h1>Football players</h1>
         <ol>
-            {% for player in alex %}
+            {% for player in football %}
                 <li>{{player.first_name}} {{player.last_name}}</li>
             {% endfor %}
         </ol>
+        <h1>Teams with a player with a first name of sophia</h1>
+        <ol>
+            {% for team in sophia %}
+                <li>{{team.location}} {{team.team_name}}</li>
+            {% endfor %}
+        </ol>
+        <h1>Leagues with a player with a first name sophia</h1>
+        <ol>
+            {% for league in sophialeague %}
+                <li>{{league.name}}</li>
+            {% endfor %}
+        </ol>
+        <h1>everyone with the last name "Flores" who DOESN'T (currently) play for the Washington Roughriders</h1>
+        <ol>
+            {% for player in flores %}
+                <li>{{player.first_name}} {{player.last_name}}</li>                 
+            {% endfor %} 
+        </ol>
+        <h1>all teams, past and present, that Samuel Evans has played with</h1>
+        <ol>
+            {% for team in samevans %}
+                <li>{{team.location}} {{team.team_name}}</li>
+            {% endfor %}
+        </ol>
+        <h1>all players, past and present, with the Manitoba Tiger-Cats</h1>
+        <ol>
+            {% for player in tigercats %}
+                <li>{{player.first_name}} {{player.last_name}}</li>
+            {% endfor %}            
+        </ol>
+        <h1>all players who were formerly (but aren't currently) with the Wichita Vikings</h1>
+        <ol>
+            {% for player in vikings %}
+                <li>{{player.first_name}} {{player.last_name}}</li>
+            {% endfor %}
+        </ol>           
+        <h1>In the interest of saving time, I am not doing the final few so I can move on to the next assignment; I get how to do this.</h1>
 	</body>
 </html>

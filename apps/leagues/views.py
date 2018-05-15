@@ -5,22 +5,17 @@ from . import team_maker
 
 def index(request):
 	context = {
-		"basketball": League.objects.filter(sport__iexact='basketball'),
-        "womens": League.objects.filter(name__icontains='women'),
-        "hockey": League.objects.filter(name__icontains='hockey'),
-        "nofootball": League.objects.exclude(name__icontains="football"),
-        "conference": League.objects.filter(name__icontains="onference"),
-        "atlantic": League.objects.filter(name__istartswith="atlantic"),
-        "dallas": Team.objects.filter(location__iexact="dallas"),
-        "raptors": Team.objects.filter(team_name__iexact="raptors"),   
-        "city": Team.objects.filter(location__icontains="city"),
-        "t": Team.objects.filter(team_name__istartswith="t"), 
-        "allteams": Team.objects.all().order_by('location'),
-        "teamsreverse": Team.objects.all().order_by('-team_name'),
-        "cooper": Player.objects.filter(last_name__iexact='cooper'),
-        "joshua": Player.objects.filter(first_name__iexact='joshua'), 
-        "coopjosh": Player.objects.filter(last_name__iexact='cooper').exclude(first_name__iexact='joshua'),
-        "alex": Player.objects.filter(first_name__iexact='alexander') | Player.objects.filter(first_name__iexact='wyatt'), 
+        "atlantic": League.objects.filter(name__iexact="Atlantic Soccer Conference")[0].teams.all(),
+        "penguins": Team.objects.filter(team_name__iexact="Penguins").filter(location__iexact="Boston")[0].curr_players.all(),
+        "icbc": Team.objects.filter(league__name__iexact="International Collegiate Baseball Conference"),
+        "lopez": Player.objects.filter(last_name__iexact='lopez').filter(curr_team__league__name__iexact="American Conference of Amateur Football"),
+        "football" : Player.objects.filter(curr_team__league__sport__iexact="Football"),
+        "sophia" : Team.objects.filter(curr_players__first_name__iexact="sophia"),
+        "sophialeague": League.objects.filter(teams__curr_players__first_name__iexact="sophia"),   
+        "flores": Player.objects.filter(last_name__iexact="flores").exclude(curr_team__team_name__iexact="Roughriders").exclude(curr_team__location__iexact="washington"),
+        "samevans": Team.objects.filter(all_players__first_name__iexact="samuel").filter(all_players__last_name__iexact="evans"),
+        "tigercats": Team.objects.filter(team_name__iexact="Tiger-Cats").filter(location__iexact="Manitoba")[0].all_players.all(),
+        "vikings": Player.objects.filter(all_teams__location__iexact="Wichita").filter(all_teams__team_name__iexact="vikings").exclude(curr_team__team_name__iexact="vikings").exclude(curr_team__location__iexact="Wichita"),
 	}
 	return render(request, "leagues/index.html", context)
 
